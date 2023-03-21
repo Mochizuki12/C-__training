@@ -2,7 +2,7 @@
 #include <string>
 
 /*--------------------------------------------
-            引数付きコンストラクタ
+        デフォルトコピーコンストラクタ
 ----------------------------------------------*/
 
 class SimpleClass
@@ -10,16 +10,9 @@ class SimpleClass
 private:
     int number;
     std::string name;
-
 public:
-    //引数なしコンストラクタ
-    //(デフォルトコンストラクタ)
-    SimpleClass()
-    {
-        number = 0;
-    }
-
-    //引数付きコンストラクタ
+    //コンストラクタ
+    SimpleClass() { number = 0; }
     SimpleClass(int n, const char *s)
     {
         number = n;
@@ -30,22 +23,24 @@ public:
     void setNumber(int n) { number = n; }
 
     std::string getName() { return name; }
-    void setName(char* s) { name = s; }
+    void setName(const char* s) { name = s; }
 };
 
 int main()
 {
-    //デフォルトコンストラクタの呼び出し
-    SimpleClass sc1;
-    //number: 0 name:
+    SimpleClass sc1(1, "Jhon");
+    //number: 1 name: John
     std::cout << "number: " << sc1.getNumber();
     std::cout << "\nname: " << sc1.getName() << std::endl;
 
-    //引数付きコンストラクタの呼び出し
-    SimpleClass sc2(1, "John");
+    //コピーコンストラクタ
+    SimpleClass sc2(sc1);
+    //↓でもOK
+    //SimpleClass sc2 = sc1;
+
     //number: 1 name: John
     std::cout << "number: " << sc2.getNumber();
-    std::cout << "\nname: " << sc2.getName() << std::endl;
+    std::cout << "\nnaem: " << sc2.getName() << std::endl;
 
     std::cin.get();
 }

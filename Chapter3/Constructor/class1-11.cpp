@@ -2,7 +2,7 @@
 #include <string>
 
 /*--------------------------------------------
-            引数付きコンストラクタ
+            委譲コンストラクタ
 ----------------------------------------------*/
 
 class SimpleClass
@@ -14,16 +14,17 @@ private:
 public:
     //引数なしコンストラクタ
     //(デフォルトコンストラクタ)
-    SimpleClass()
+    SimpleClass() : SimpleClass(0, "no name")
     {
-        number = 0;
+        std::cout << "default" << std::endl;
+        //引数付きコンストラクタに処理を任せるので何もしない
     }
 
     //引数付きコンストラクタ
-    SimpleClass(int n, const char *s)
+    SimpleClass(int n, const char *s) : number(n), name(s)
     {
-        number = n;
-        name = s;
+        std::cout << "in value" << std::endl;
+        //メンバイニシャライザで初期化するため，何もしない
     }
 
     int getNumber() { return number; }
